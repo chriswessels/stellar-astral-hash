@@ -1,0 +1,32 @@
+hash: 6b79203579d5cf12f9f1d7c97f707f10c22f66f66b630cdd93be8b32ab83380b
+updated: 2018-01-29T22:04:53.145763223Z
+imports:
+- name: github.com/agl/ed25519
+  version: 278e1ec8e8a6e017cd07577924d6766039146ced
+  repo: https://github.com/agl/ed25519
+  subpackages:
+  - edwards25519
+- name: github.com/getsentry/raven-go
+  version: c9d3cc542ad199f62c0264286be537f9bce6063c
+  repo: https://github.com/getsentry/raven-go
+- name: github.com/nullstyle/go-xdr
+  version: a875e7c9fa2388ce03279f6b5ba1c2ccd1f9e917
+  repo: https://github.com/nullstyle/go-xdr
+  subpackages:
+  - xdr3
+- name: github.com/paulbellamy/ratecounter
+  version: a803f0e4f07116687bb30965e8f7d0c32981b63c
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+  repo: https://github.com/pkg/errors
+- name: github.com/stellar/go
+  version: 12f1e8178cdd896464c6de90207935e29900825a
+  subpackages:
+  - crc16
+  - hash
+  - keypair
+  - network
+  - strkey
+  - support/errors
+  - xdr
+testImports: []
