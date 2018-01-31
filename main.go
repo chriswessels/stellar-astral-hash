@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"runtime"
 	"strings"
 	"time"
@@ -13,25 +14,30 @@ import (
 )
 
 var version = "develop"
+var desc = "A simple, high-throughput vanity address scanner for Stellar Accounts."
 
+var suffixFlag = flag.String("suffix", "", "Desired vanity suffix for Address - required flag")
 var numWorkersFlag = flag.Int("workers", 0, "Number of concurrent workers - defaults to number of CPU cores detected")
-var suffixFlag = flag.String("suffix", "", "Desired vanity suffix for Address")
 
 func main() {
-	log.Printf("astral-hash %s", version)
-
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "astral-hash (%s)\n%s\n\nUsage:\n", version, desc)
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 	numWorkers := *numWorkersFlag
-	suffix := *suffixFlag
+	suffix := strings.ToUpper(*suffixFlag)
 
 	if suffix == "" {
-		log.Fatalln("You must set your desired address suffix. See --help")
+		flag.Usage()
+		os.Exit(2)
 	}
 	if numWorkers == 0 {
 		numWorkers = runtime.NumCPU()
 	}
 	runtime.GOMAXPROCS(numWorkers)
 
+	log.Printf("astral-hash (%s)", version)
 	result := make(chan *keypair.Full)
 	rateCounter := ratecounter.NewRateCounter(1 * time.Second)
 	for i := 0; i < numWorkers; i++ {
