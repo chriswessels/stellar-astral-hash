@@ -21,5 +21,4 @@ Usage:
     	Desired vanity suffix for Address - required flag
   -workers int
     	Number of concurrent workers - defaults to number of CPU cores detected
-exit status 2
 ```
